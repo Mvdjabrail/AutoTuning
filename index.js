@@ -2,18 +2,14 @@ const cors = require("cors");
 const express = require("express");
 const mongoose = require("mongoose");
 const app = express();
-require('dotenv').config();
 const path = require("path")
 
 app.use(cors());
 app.use(express.json());
 
 app.use(express.static('images'));
-app.use('/services', express.static(__dirname + '/services'));
+app.use(require("./routes/index"));
 
-app.use(cors());
-app.use(express.json());
-app.use(require("./routes"));
 
 
 mongoose.connect(process.env.MONGO_SERVER, {
